@@ -1,0 +1,48 @@
+import java.util.Scanner;
+
+public class QuizGame {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        String[] questions = {
+            "1. What is the capital of India?",
+            "2. Who wrote 'Romeo and Juliet'?",
+            "3. What is the boiling point of water?",
+            "4. Which language is used to develop Android apps?",
+            "5. What is 10 + 5?",
+            "6. Who wrote 'Ramayana'?"
+        };
+
+        String[][] options = {
+            {"A) Delhi", "B) Mumbai", "C) Kolkata", "D) Chennai"},
+            {"A) Charles Dickens", "B) William Shakespeare", "C) Mark Twain", "D) Jane Austen"},
+            {"A) 50°C", "B) 90°C", "C) 100°C", "D) 110°C"},
+            {"A) Python", "B) Swift", "C) Kotlin", "D) Ruby"},
+            {"A) 10", "B) 15", "C) 20", "D) 25"},
+            {"A) Valmiki", "B) Bharatamuni", "C) Vatsyayana", "D) Gautama"}
+        };
+
+        char[] answers = {'A', 'B', 'C', 'C', 'B', 'A'};
+
+        int score = 0;
+
+        for (int i = 0; i < questions.length; i++) {
+            System.out.println(questions[i]);
+            for (String option : options[i]) {
+                System.out.println(option);
+            }
+            System.out.print("Your answer: ");
+            char answer = scanner.next().toUpperCase().charAt(0);
+
+            if (answer == answers[i]) {
+                System.out.println("Correct!\n");
+                score++;
+            } else {
+                System.out.println("Wrong! The correct answer is " + answers[i] + "\n");
+            }
+        }
+
+        System.out.println("Your final score is: " + score + "/" + questions.length);
+        scanner.close();
+    }
+}
