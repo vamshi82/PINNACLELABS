@@ -1,0 +1,73 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class NoteTakingApp {
+    private static ArrayList<String> notes = new ArrayList<>();
+
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        int choice;
+
+        do {
+            System.out.println("\n--- Note-Taking Application ---");
+            System.out.println("1. Add Note");
+            System.out.println("2. View Notes");
+            System.out.println("3. Delete Note");
+            System.out.println("4. Exit");
+            System.out.print("Choose an option: ");
+            choice = input.nextInt();
+            input.nextLine(); 
+
+            switch (choice) {
+                case 1:
+                    addNote(input);
+                    break;
+                case 2:
+                    viewNotes();
+                    break;
+                case 3:
+                    deleteNote(input);
+                    break;
+                case 4:
+                    System.out.println("Exiting Note-Taking Application...");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Try again.");
+            }
+        } while (choice != 4);
+
+        input.close();
+    }
+
+    public static void addNote(Scanner input) {
+        System.out.print("Enter your note: ");
+        String note = input.nextLine();
+        notes.add(note);
+        System.out.println("Note added successfully!");
+    }
+
+    public static void viewNotes() {
+        System.out.println("\n--- Your Notes ---");
+        if (notes.isEmpty()) {
+            System.out.println("No notes found.");
+        } else {
+            for (int i = 0; i < notes.size(); i++) {
+                System.out.println((i + 1) + ". " + notes.get(i));
+            }
+        }
+    }
+
+    public static void deleteNote(Scanner input) {
+        viewNotes();
+        if (!notes.isEmpty()) {
+            System.out.print("Enter note number to delete: ");
+            int index = input.nextInt();
+            if (index >= 1 && index <= notes.size()) {
+                notes.remove(index - 1);
+                System.out.println("Note deleted.");
+            } else {
+                System.out.println("Invalid note number.");
+            }
+        }
+    }
+}
